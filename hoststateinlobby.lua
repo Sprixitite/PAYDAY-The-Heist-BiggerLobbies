@@ -47,6 +47,7 @@ HostStateInLobby.on_join_request_received = function(self, data, peer_name, clie
     local new_peer_id, new_peer
     new_peer_id, new_peer = data.session:add_peer(peer_name, nil, true, false, false, nil, client_mask_set, client_user_id)
     if not new_peer_id then
+        dorhud_log("no clean peer_id for " .. tostring(peer_name))
         print("there was no clean peer_id")
         sender:join_request_reply(0, 0, 1, 1, 0, "", my_user_id)
         return

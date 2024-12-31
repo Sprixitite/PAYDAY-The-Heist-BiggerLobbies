@@ -15,7 +15,7 @@ local module = DMod:new("BiggerLobbies", {
 module:register_include("sprixLogger")
 
 _G.bl = {
-    bl_total_playable_crims = 16384,
+    bl_total_playable_crims = 8,
     bl_total_client_slots = function(self) return self.bl_total_playable_crims-1 end,
     bl_heisters = function(self) return {"american", "german", "russian", "spanish"} end,
     bl_additional_crims = function(self) return ( 4 * self.bl_total_playable_crims ) - 4 end,
@@ -74,17 +74,20 @@ bl.logtable = function(table)
     bl.logtable_unfmt(table)
 end
 
-module:hook_post_require("lib/network/matchmaking/networkmatchmakingsteam", "networkmatchmakingsteam")
-module:hook_post_require("lib/managers/menu/menulobbyrenderer", "menulobbyrenderer")
-module:hook_post_require("lib/managers/playermanager", "playermanager")
-module:hook_post_require("lib/managers/criminalsmanager", "criminalsmanager")
-module:hook_post_require("lib/managers/group_ai_states/groupaistatebase", "groupaistatebase")
-module:hook_post_require("lib/network/extensions/player/huskplayermovement", "huskplayermovement")
-module:hook_post_require("lib/network/networkgame", "networkgame")
-module:hook_post_require("lib/network/networkmember", "networkmember")
-module:hook_post_require("lib/units/beings/player/playermovement", "playermovement")
-module:hook_post_require("lib/managers/hudmanager", "hudmanager")
-module:hook_post_require("lib/managers/menu/menunodegui", "menunodegui")
-module:hook_post_require("lib/network/base/hostnetworksession", "hostnetworksession")
+module:hook_post_require("lib/managers/criminalsmanager",                           "criminalsmanager"          )
+module:hook_post_require("lib/managers/mission/elementmissionend",                  "elementmissionend"         )
+module:hook_post_require("lib/managers/group_ai_states/groupaistatebase",           "groupaistatebase"          )
+module:hook_post_require("lib/network/base/hostnetworksession",                     "hostnetworksession"        )
+module:hook_post_require("lib/network/base/session_states/hoststateinlobby",        "hoststateinlobby"          )
+module:hook_post_require("lib/managers/hudmanager",                                 "hudmanager"                )
+module:hook_post_require("lib/network/extensions/player/huskplayermovement",        "huskplayermovement"        )
+module:hook_post_require("lib/managers/menu/menulobbyrenderer",                     "menulobbyrenderer"         )
+module:hook_post_require("lib/managers/menu/menunodegui",                           "menunodegui"               )
+module:hook_post_require("lib/network/networkgame",                                 "networkgame"               )
+module:hook_post_require("lib/network/base/networkmanager",                         "networkmanager"            )
+module:hook_post_require("lib/network/matchmaking/networkmatchmakingsteam",         "networkmatchmakingsteam"   )
+module:hook_post_require("lib/network/networkmember",                               "networkmember"             )
+module:hook_post_require("lib/managers/playermanager",                              "playermanager"             )
+module:hook_post_require("lib/units/beings/player/playermovement",                  "playermovement"            )
 
 return module

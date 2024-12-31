@@ -1,7 +1,11 @@
 local module = ... or D:module("BiggerLobbies")
 local NetworkMatchMakingSTEAM = module:hook_class("NetworkMatchMakingSTEAM")
 
-dorhud_log("Hi! EUSJNX")
+-- Code snippet from BL3
+NetworkMatchMakingSTEAM.OPEN_SLOTS = bl.bl_total_playable_crims
+
+local currentKey = NetworkMatchMakingSTEAM._BUILD_SEARCH_INTEREST_KEY
+NetworkMatchMakingSTEAM._BUILD_SEARCH_INTEREST_KEY = currentKey and currentKey .. "_biggerlobbies" or "biggerlobbies"
 
 module:post_hook(NetworkMatchMakingSTEAM, "init", function(self)
     self.OPEN_SLOTS = bl.bl_total_playable_crims;

@@ -15,7 +15,7 @@ local module = DMod:new("BiggerLobbies", {
 module:register_include("sprixLogger")
 
 _G.bl = {
-    bl_total_playable_crims = 32,
+    bl_total_playable_crims = 16384,
     bl_total_client_slots = function(self) return self.bl_total_playable_crims-1 end,
     bl_heisters = function(self) return {"american", "german", "russian", "spanish"} end,
     bl_additional_crims = function(self) return ( 4 * self.bl_total_playable_crims ) - 4 end,

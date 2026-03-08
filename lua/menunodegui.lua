@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local MenuNodeGui = module:hook_class("MenuNodeGui")
-
-MenuNodeGui._setup_main_panel = function(self, safe_rect, shape)
+Hooks:OverrideFunction(MenuNodeGui, "_setup_main_panel", function(self, safe_rect, shape)
 	local res = RenderSettings.resolution
 	shape = shape or {}
 	local x = shape.x or safe_rect.x
@@ -17,4 +14,4 @@ MenuNodeGui._setup_main_panel = function(self, safe_rect, shape)
 	self._legends_panel:set_top(self._main_panel:bottom() + tweak_data.load_level.border_pad)
 	self._main_panel:set_y(self._main_panel:y() + 24 * tweak_data.scale.menu_arrow_padding_multiplier)
 	self._main_panel:set_h(self._main_panel:h() - 48 * tweak_data.scale.menu_arrow_padding_multiplier)
-end
+end)

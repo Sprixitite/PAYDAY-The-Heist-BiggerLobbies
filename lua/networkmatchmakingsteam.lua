@@ -1,17 +1,14 @@
-local module = ... or D:module("BiggerLobbies")
-local NetworkMatchMakingSTEAM = module:hook_class("NetworkMatchMakingSTEAM")
-
 -- Code snippet from BL3
 NetworkMatchMakingSTEAM.OPEN_SLOTS = bl.bl_total_playable_crims
 
 local currentKey = NetworkMatchMakingSTEAM._BUILD_SEARCH_INTEREST_KEY
 NetworkMatchMakingSTEAM._BUILD_SEARCH_INTEREST_KEY = currentKey and currentKey .. "_biggerlobbies" or "biggerlobbies"
 
-module:post_hook(NetworkMatchMakingSTEAM, "init", function(self)
+Hooks:PostHook(NetworkMatchMakingSTEAM, "init", "init_bl", function(self)
     self.OPEN_SLOTS = bl.bl_total_playable_crims;
-end, false)
+end)
 
-NetworkMatchMakingSTEAM.create_lobby = function(self, settings)
+Hooks:OverrideFunction(NetworkMatchMakingSTEAM, "create_lobby", function(self, settings)
 	self._num_players = nil
 	local dialog_data = {}
 	dialog_data.title = managers.localization:text("dialog_creating_lobby_title")
@@ -47,9 +44,9 @@ NetworkMatchMakingSTEAM.create_lobby = function(self, settings)
 	end
 
 	return Steam:create_lobby(f, --[[ previously "self.OPEN_SLOTS" ]] bl.bl_total_playable_crims, "invisible")
-end
+end)
 
-NetworkMatchMakingSTEAM.search_lobby = function(self, friends_only)
+Hooks:OverrideFunction(NetworkMatchMakingSTEAM, "search_lobby", function(self, friends_only)
 	self._search_friends_only = friends_only
 	if not self:_has_callback("search_lobby") then
 		return
@@ -124,4 +121,4 @@ NetworkMatchMakingSTEAM.search_lobby = function(self, friends_only)
 
 	end
 
-end
+end)

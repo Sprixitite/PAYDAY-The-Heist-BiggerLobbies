@@ -1,0 +1,5 @@
+---@meta
+---@module "meta.diesel"
+---@module "meta.dorhud"
+---@module "meta.superblt"
+---@module "meta.steam"

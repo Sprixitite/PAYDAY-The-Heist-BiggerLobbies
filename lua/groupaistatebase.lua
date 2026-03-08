@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local GroupAIStateBase = module:hook_class("GroupAIStateBase")
-
-GroupAIStateBase.on_criminal_team_AI_enabled_state_changed = function(self)
+Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_team_AI_enabled_state_changed", function(self)
 	if Network:is_client() then
 		return
 	end
@@ -15,9 +12,9 @@ GroupAIStateBase.on_criminal_team_AI_enabled_state_changed = function(self)
 		self:fill_criminal_team_with_AI()
 	end
 
-end
+end)
 
-GroupAIStateBase.fill_criminal_team_with_AI = function(self, is_drop_in)
+Hooks:OverrideFunction(GroupAIStateBase, "fill_criminal_team_with_AI", function(self, is_drop_in)
 
 	while true do
 	
@@ -27,7 +24,7 @@ GroupAIStateBase.fill_criminal_team_with_AI = function(self, is_drop_in)
 
 	end
 
-end
+end)
 
 -- GroupAIStateBase.amount_of_winning_ai_criminals = function(self)
 -- 	local amount = 0
@@ -43,7 +40,7 @@ end
 -- 	return amount
 -- end
 
-GroupAIStateBase.spawn_one_teamAI = function(self, is_drop_in, char_name, spawn_on_unit)
+Hooks:OverrideFunction(GroupAIStateBase, "spawn_one_teamAI", function(self, is_drop_in, char_name, spawn_on_unit)
     local logger = bl:getLogger()
 
     logger:beginScope("spawn_one_teamAI")
@@ -119,4 +116,4 @@ GroupAIStateBase.spawn_one_teamAI = function(self, is_drop_in, char_name, spawn_
 		return unit
 	end
 
-end
+end)

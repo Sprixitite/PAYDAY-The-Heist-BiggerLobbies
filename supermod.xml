@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<mod name="BiggerLobbies For PD:TH" global_key="BL_PDTH">
+    	<tweak definition="tweaks/NetworkTweak.xml" />
+</mod>

@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local NetworkGame = module:hook_class("NetworkGame")
-
-NetworkGame.on_peer_request_character = function(self, peer_id, character)
+Hooks:OverrideFunction(NetworkGame, "on_peer_request_character", function(self, peer_id, character)
 
 	local finalname = character
 
@@ -19,7 +16,7 @@ NetworkGame.on_peer_request_character = function(self, peer_id, character)
 
 	end
 
-	dorhud_log("on_peer_request_character: upgraded name \"" .. character .. "\" to \"" .. finalname .. "\"")
+	log("on_peer_request_character: upgraded name \"" .. character .. "\" to \"" .. finalname .. "\"")
 
 	if Global.game_settings.single_player then
 		local peer = managers.network:session():peer(peer_id)
@@ -53,4 +50,4 @@ NetworkGame.on_peer_request_character = function(self, peer_id, character)
 	end
 
 	managers.network:session():send_to_peers("request_character_response", peer_id, finalname)
-end
+end)

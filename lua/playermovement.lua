@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local PlayerMovement = module:hook_class("PlayerMovement")
-
-PlayerMovement.set_character_anim_variables = function(self)
+Hooks:OverrideFunction(PlayerMovement, "set_character_anim_variables", function(self)
 
     local logger = bl:getLogger()
     logger:beginScope("set_character_anim_variables")
@@ -63,4 +60,4 @@ PlayerMovement.set_character_anim_variables = function(self)
 
     logger:endScope()
 
-end
+end)

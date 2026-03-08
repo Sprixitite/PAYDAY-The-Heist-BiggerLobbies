@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local HostNetworkSession = module:hook_class("HostNetworkSession")
-
-HostNetworkSession.chk_server_joinable_state = function(self)
+Hooks:OverrideFunction(HostNetworkSession, "chk_server_joinable_state", function(self)
     --#region Unaltered Code
     for peer_id, peer in next, self._peers do
         if peer:force_open_lobby_state() then
@@ -50,9 +47,9 @@ HostNetworkSession.chk_server_joinable_state = function(self)
 
     managers.network.matchmake:set_server_joinable(true)
     --#endregion Unaltered Code
-end
+end)
 
-HostNetworkSession._get_free_client_id = function(self)
+Hooks:OverrideFunction(HostNetworkSession, "_get_free_client_id", function(self)
     local i = 2
     while i < bl.bl_total_playable_crims+1 do
 
@@ -74,4 +71,4 @@ HostNetworkSession._get_free_client_id = function(self)
 
         i = i + 1
     end
-end
+end)

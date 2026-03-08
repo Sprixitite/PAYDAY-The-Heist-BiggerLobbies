@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local HuskPlayerMovement = module:hook_class("HuskPlayerMovement")
-
-function define_the_things(self)
+local function define_the_things(self)
 	self._char_name_to_index = {}
 	self._char_model_names = {}
     local heisters = bl:bl_heisters()
@@ -25,7 +22,7 @@ function define_the_things(self)
 	HuskPlayerMovement._char_name_to_index = self._char_name_to_index
 end
 
-HuskPlayerMovement.set_character_anim_variables = function(self)
+Hooks:OverrideFunction(HuskPlayerMovement, "set_character_anim_variables", function(self)
 	local char_name = _G.bl:get_blname(self._unit) or managers.criminals:character_name_by_unit(self._unit)
 	if not char_name then
 		return
@@ -43,4 +40,4 @@ HuskPlayerMovement.set_character_anim_variables = function(self)
 		self._plr_mesh_name = mesh_name
 	end
 
-end
+end)

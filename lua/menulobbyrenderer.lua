@@ -1,6 +1,3 @@
-local module = ... or D:module("BiggerLobbies")
-local MenuLobbyRenderer = module:hook_class("MenuLobbyRenderer")
-
 local mugshots = {
 	random = "mugshot_random",
 	undecided = "mugshot_unassigned",
@@ -50,7 +47,7 @@ for i=0, bl:bl_additional_crims()-1 do
 	
 end
 
-MenuLobbyRenderer.set_character = function(self, id, character)
+Hooks:OverrideFunction(MenuLobbyRenderer, "set_character", function(self, id, character)
 	local slot = self._player_slots[id]
 	slot.character:set_text(string.upper(managers.localization:text("debug_" .. character)))
 	slot.character:set_color(Color.white)
@@ -71,9 +68,10 @@ MenuLobbyRenderer.set_character = function(self, id, character)
 		managers.menu:active_menu().renderer:set_stencil_align("manual", mugshot_stencil[character][2])
 	end
 
-end
+end)
 
-MenuLobbyRenderer.open = function(self, ...)
+Hooks:OverrideFunction(MenuLobbyRenderer, "open", function(self, ...)
+	---@diagnostic disable-next-line
 	MenuLobbyRenderer.super.open(self, ...)
 	local safe_rect_pixels = managers.viewport:get_safe_rect_pixels()
     local use_compact_layout = bl.bl_total_playable_crims > 16
@@ -422,9 +420,9 @@ MenuLobbyRenderer.open = function(self, ...)
 	self:_entered_menu()
 	MenuRenderer.setup_frames_and_logo(self)
 	self:_layout_menu_bg()
-end
+end)
 
-function MenuLobbyRenderer:_layout_video()
+Hooks:OverrideFunction(MenuLobbyRenderer, "_layout_video", function(self)
     local size_scale = math.ceil(bl.bl_total_playable_crims / 4) > 9 and 0 or 1
 	if self._level_video then
 		local w = self._gui_info_panel:w() * 0.775 * size_scale
@@ -433,9 +431,9 @@ function MenuLobbyRenderer:_layout_video()
 		self._level_video:set_y(0)
 		self._level_video:set_x(4)
 	end
-end
+end)
 
-MenuLobbyRenderer._layout_info_panel = function(self)
+Hooks:OverrideFunction(MenuLobbyRenderer, "_layout_info_panel", function(self)
 	local res = RenderSettings.resolution
 	local safe_rect = managers.viewport:get_safe_rect_pixels()
 	local is_single_player = Global.game_settings.single_player
@@ -543,4 +541,4 @@ MenuLobbyRenderer._layout_info_panel = function(self)
 
 	end
 
-end
+end)

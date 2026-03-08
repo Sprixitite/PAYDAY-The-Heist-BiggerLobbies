@@ -1,5 +1,3 @@
-local module = ... or D:module("BiggerLobbies")
-
 -- I think this is the third bit of logging code I've written so far
 -- There's a lot of dead code lying about here
 

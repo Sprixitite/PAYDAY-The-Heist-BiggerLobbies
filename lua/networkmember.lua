@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local NetworkMember = module:hook_class("NetworkMember")
-
-NetworkMember.spawn_unit = function(self, spawn_point_id, is_drop_in, spawn_as)
+Hooks:OverrideFunction(NetworkMember, "spawn_unit", function(self, spawn_point_id, is_drop_in, spawn_as)
 
     local logger = bl:getLogger()
 
@@ -113,9 +110,9 @@ NetworkMember.spawn_unit = function(self, spawn_point_id, is_drop_in, spawn_as)
 
     logger:endScope()
     return unit
-end
+end)
 
-NetworkMember.set_unit = function(self, unit, character_name)
+Hooks:OverrideFunction(NetworkMember, "set_unit", function(self, unit, character_name)
 
     local logger = bl:getLogger()
     logger:beginScope("set_unit")
@@ -153,4 +150,4 @@ NetworkMember.set_unit = function(self, unit, character_name)
 
     logger:endScope()
 
-end
+end)

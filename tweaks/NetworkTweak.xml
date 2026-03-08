@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<tweaks>
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- remove_dead_peer -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="remove_dead_peer" delivery="ordered" receiver="connection" check="server_to_client"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- kick_peer -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="kick_peer" delivery="ordered" receiver="connection" check="server_to_client"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- remove_peer_confirmation -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="remove_peer_confirmation" delivery="ordered" receiver="connection" check="client_to_server"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- join_request_reply -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="join_request_reply" delivery="ordered" receiver="connection"/>
+		</search>
+
+		<target mode="replace">
+			<message name="join_request_reply" delivery="ordered" receiver="connection">	
+				<param type="int" min="0" max="4" /> <!-- Reply info 0 == may not join, 1 == ok, 2 == kicked, 3 == game started, 4 = map not owned -->
+				<param type="int" min="0" max="15" /> <!-- Peer id ~=0 when accepted -->
+				<param type="int" min="1" max="16" /> <!-- level index -->
+				<param type="int" min="1" max="5" /> <!-- difficulty index -->
+				<param type="int" min="0" max="4" /> <!-- Game State ~=0 when accepted, lobby, in game etc -->
+				<param type="string" /> <!-- Mask set -->
+				<param type="string" /> <!-- Steam User ID (used for pc only) -->
+			</message>
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- peer_handshake -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="peer_handshake" delivery="ordered" receiver="connection" check="server_to_client"/>
+			<param type="int" min="0" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="0" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- connection_established -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="connection_established" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- mutual_connection -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="mutual_connection" delivery="ordered" receiver="connection" check="server_to_client"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- request_drop_in_pause -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="request_drop_in_pause" delivery="ordered" receiver="connection" check="server_to_client"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- drop_in_pause_confirmation -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="drop_in_pause_confirmation" delivery="ordered" receiver="connection" check="client_to_server"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- set_peer_synched -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="set_peer_synched" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- client_died -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="client_died" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- dropin_progress -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="dropin_progress" delivery="unreliable" receiver="connection" check="server_to_client"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- request_spawn_member -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="request_spawn_member" delivery="ordered" receiver="connection" check="client_to_server"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- set_peer_left -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="set_peer_left" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- lobby_info -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="lobby_info" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- request_character -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="request_character" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- set_mask_set -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="set_mask_set" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- request_character_response -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="request_character_response" delivery="ordered" receiver="connection"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- report_dead_connection -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="report_dead_connection" delivery="ordered" receiver="connection" check="client_to_server"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- set_unit -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="set_unit" delivery="ordered" receiver="unit" check="server_to_client"/>
+			<param type="int" min="0" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="0" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- send_statistics -->
+		<search>
+			<network/>
+			<rpc/>
+			<message ame="send_statistics" delivery="ordered" receiver="unit" check="client_to_server"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- sync_statistics_result -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="sync_statistics_result" delivery="ordered" receiver="unit" check="server_to_client"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+	<tweak version="2.0" name="settings/network" extension="network_settings"> <!-- sync_level_up -->
+		<search>
+			<network/>
+			<rpc/>
+			<message name="sync_level_up" delivery="reliable" receiver="unit"/>
+			<param type="int" min="1" max="4" />
+		</search>
+
+		<target mode="replace">
+			<param type="int" min="1" max="15" />
+		</target>
+	</tweak>
+
+</tweaks>

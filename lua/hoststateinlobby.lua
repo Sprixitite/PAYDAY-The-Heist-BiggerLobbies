@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local HostStateInLobby = module:hook_class("HostStateInLobby")
-
-HostStateInLobby.on_join_request_received = function(self, data, peer_name, client_mask_set, dlcs, client_ip, client_user_id, sender)
+Hooks:OverrideFunction(HostStateInLobby, "on_join_request_received", function(self, data, peer_name, client_mask_set, dlcs, client_ip, client_user_id, sender)
     --#region Enterprise Quality Code
         print("[HostStateInLobby:on_join_request_received]", peer_name, client_mask_set, dlcs, client_ip, client_user_id, sender:ip_at_index(0))
         if self:_has_peer_left_PSN(peer_name) then
@@ -47,7 +44,6 @@ HostStateInLobby.on_join_request_received = function(self, data, peer_name, clie
     local new_peer_id, new_peer
     new_peer_id, new_peer = data.session:add_peer(peer_name, nil, true, false, false, nil, client_mask_set, client_user_id)
     if not new_peer_id then
-        dorhud_log("no clean peer_id for " .. tostring(peer_name))
         print("there was no clean peer_id")
         sender:join_request_reply(0, 0, 1, 1, 0, "", my_user_id)
         return
@@ -62,4 +58,4 @@ HostStateInLobby.on_join_request_received = function(self, data, peer_name, clie
     local difficulty_index = tweak_data:difficulty_to_index(Global.game_settings.difficulty)
     new_peer_rpc:join_request_reply(1, new_peer_id, level_index, difficulty_index, 1, data.local_peer:mask_set(), my_user_id)
     --#endregion Enterprise Quality Code
-end
+end)

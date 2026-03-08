@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local CriminalsManager = module:hook_class("CriminalsManager")
-
-module:post_hook(CriminalsManager, "init", function(self)
+Hooks:PostHook(CriminalsManager, "init", "init_bl", function(self)
     local ref_tbl = {}
     for k, v in pairs(self._characters) do
         ref_tbl[v.name] = v.static_data
@@ -27,17 +24,15 @@ module:post_hook(CriminalsManager, "init", function(self)
     end
 end)
 
-CriminalsManager.character_data_by_name = function(self, name)
+Hooks:OverrideFunction(CriminalsManager, "character_data_by_name", function(self, name)
     for k, data in next, self._characters do
         if name == data.name then
             return data.data
         end
-
     end
+end)
 
-end
-
-CriminalsManager.character_name_by_unit = function(self, unit)
+Hooks:OverrideFunction(CriminalsManager, "character_name_by_unit", function(self, unit)
 
     local logger = bl:getLogger()
 
@@ -69,7 +64,7 @@ CriminalsManager.character_name_by_unit = function(self, unit)
 
     end
 
-end
+end)
 
 --[[CriminalsManager.is_taken = function(self, name)
     local original_taken = false
@@ -97,13 +92,13 @@ end]]
     end
 end)]]
 
-CriminalsManager.getchar = function(self, crimname)
+Hooks:OverrideFunction(CriminalsManager, "getchar", function(self, crimname)
     for k, char in next, self._characters do
         if char.name == crimname then return char end
     end
-end
+end)
 
-CriminalsManager.chartaken = function(self, char)
+Hooks:OverrideFunction(CriminalsManager, "chartaken", function(self, char)
     local taken = char.taken or managers.groupai:state():is_teamAI_marked_for_removal(char.name)
     if not taken then
         for k, member in next, managers.network:game():all_members() do
@@ -113,7 +108,7 @@ CriminalsManager.chartaken = function(self, char)
         end
 
     end
-end
+end)
 
 CriminalsManager.upgrade_crimname_to_contingent = function( self, crimname )
 
@@ -133,7 +128,7 @@ CriminalsManager.upgrade_crimname_to_contingent = function( self, crimname )
 
 end
 
-CriminalsManager.get_free_character_name = function(self, refusecontingent)
+Hooks:OverrideFunction(CriminalsManager, "get_free_character_name", function(self, refusecontingent)
     
     -- Used to avoid spawning contingents in functions like "fill_criminal_team_with_AI"
     refusecontingent = refusecontingent or false
@@ -168,6 +163,6 @@ CriminalsManager.get_free_character_name = function(self, refusecontingent)
         return free[math.random(1, #free)]
     end
 
-end
+end)
 
 

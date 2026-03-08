@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local HUDManager = module:hook_class("HUDManager")
-
-function HUDManager:add_mugshot_by_unit(unit)
+Hooks:OverrideFunction(HUDManager, "add_mugshot_by_unit", function(self, unit)
     if unit:base().is_local_player then
         return
     end
@@ -36,8 +33,6 @@ function HUDManager:add_mugshot_by_unit(unit)
         peer_id = unit:network():peer():id()
         crew_bonus = managers.player:get_crew_bonus_by_peer(peer_id)
     end
-
-    dorhud_log("character_name_id: " .. tostring(character_name_id))
     
     --local worked = pcall(function() dorhud_log("blname: \"" .. unit:base()._blname .. "\"") end)
     
@@ -62,9 +57,9 @@ function HUDManager:add_mugshot_by_unit(unit)
     })
     unit:unit_data().mugshot_id = mugshot_id
     return mugshot_id
-end
+end)
 
-function HUDManager:_layout_mugshots()
+Hooks:OverrideFunction(HUDManager, "_layout_mugshots", function(self)
     local hud = managers.hud:script(PlayerBase.PLAYER_HUD)
     local info_hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD)
     local _, hy = hud.panel:center()
@@ -156,4 +151,4 @@ function HUDManager:_layout_mugshots()
         toLayout = toLayout - 1
     end
 
-end
+end)

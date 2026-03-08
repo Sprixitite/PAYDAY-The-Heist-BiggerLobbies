@@ -1,7 +1,4 @@
-local module = ... or D:module("BiggerLobbies")
-local ElementMissionEnd = module:hook_class("ElementMissionEnd")
-
-ElementMissionEnd.on_executed = function(self, instigator)
+Hooks:OverrideFunction(ElementMissionEnd, "on_executed", function(self, instigator)
     if not self._values.enabled then
         return
     end
@@ -36,4 +33,4 @@ ElementMissionEnd.on_executed = function(self, instigator)
     end
 
     ElementMissionEnd.super.on_executed(self, instigator)
-end
+end)

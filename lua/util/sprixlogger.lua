@@ -26,7 +26,7 @@ end
 ---@return string
 local function scope_heading(hType, name)
     local left = CONFIG.SCOPE_HEADING_DENOTE:sub(1, #CONFIG.SCOPE_HEADING_DENOTE * 0.5)
-    local right = CONFIG.SCOPE_HEADING_DENOTE:sub(#CONFIG.SCOPE_HEADING_DENOTE * 0.5, -1)
+    local right = CONFIG.SCOPE_HEADING_DENOTE:sub((#CONFIG.SCOPE_HEADING_DENOTE * 0.5)+1, -1) -- dang 1 indexing
 
     local symb = CONFIG.SCOPE_SYMBOLS[hType]
     
@@ -114,6 +114,8 @@ function sprixLogger:wrap(name, debugging, fn)
             if debugging then
                 error("Function \"" .. name .. "\" failed with reason \"" .. failReason .. "\"!")
             end
+        elseif success and debugging then
+            self:interrupt_log(name .. "->SUCCESS", "Ran successfully!")
         end
         self:endScope()
         return unpack(results, 2)

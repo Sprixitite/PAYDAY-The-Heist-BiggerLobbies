@@ -1,7 +1,6 @@
-Hooks:OverrideFunction(PlayerMovement, "set_character_anim_variables", function(self)
+SprixHookMgr.OverrideHook(PlayerMovement, "set_character_anim_variables", function(self)
 
     local logger = bl:getLogger()
-    logger:beginScope("set_character_anim_variables")
 
 	local char_name = managers.criminals:character_name_by_unit(self._unit)
 	local mesh_names = {}
@@ -57,7 +56,5 @@ Hooks:OverrideFunction(PlayerMovement, "set_character_anim_variables", function(
         logger:log(debug.traceback())
         error()
     end
-
-    logger:endScope()
 
 end)

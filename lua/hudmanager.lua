@@ -1,4 +1,4 @@
-Hooks:OverrideFunction(HUDManager, "add_mugshot_by_unit", function(self, unit)
+SprixHookMgr.OverrideFunction(HUDManager, "add_mugshot_by_unit", function(self, unit)
     if unit:base().is_local_player then
         return
     end
@@ -59,7 +59,7 @@ Hooks:OverrideFunction(HUDManager, "add_mugshot_by_unit", function(self, unit)
     return mugshot_id
 end)
 
-Hooks:OverrideFunction(HUDManager, "_layout_mugshots", function(self)
+SprixHookMgr.OverrideFunction(HUDManager, "_layout_mugshots", function(self)
     local hud = managers.hud:script(PlayerBase.PLAYER_HUD)
     local info_hud = managers.hud:script(PlayerBase.PLAYER_INFO_HUD)
     local _, hy = hud.panel:center()

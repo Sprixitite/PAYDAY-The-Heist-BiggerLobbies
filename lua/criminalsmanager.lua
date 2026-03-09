@@ -1,4 +1,4 @@
-Hooks:PostHook(CriminalsManager, "init", "init_bl", function(self)
+SprixHookMgr.PostHook(CriminalsManager, "init", "init_bl", function(self)
     local ref_tbl = {}
     for k, v in pairs(self._characters) do
         ref_tbl[v.name] = v.static_data
@@ -24,7 +24,7 @@ Hooks:PostHook(CriminalsManager, "init", "init_bl", function(self)
     end
 end)
 
-Hooks:OverrideFunction(CriminalsManager, "character_data_by_name", function(self, name)
+SprixHookMgr.OverrideHook(CriminalsManager, "character_data_by_name", function(self, name)
     for k, data in next, self._characters do
         if name == data.name then
             return data.data
@@ -32,15 +32,12 @@ Hooks:OverrideFunction(CriminalsManager, "character_data_by_name", function(self
     end
 end)
 
-Hooks:OverrideFunction(CriminalsManager, "character_name_by_unit", function(self, unit)
+SprixHookMgr.OverrideHook(CriminalsManager, "character_name_by_unit", function(self, unit)
 
     local logger = bl:getLogger()
 
-    logger:beginScope("character_name_by_unit")
-
     if type_name(unit) ~= "Unit" then
         logger:log("Passed \"unit\" was not a unit")
-        logger:endScope()
         return nil
     end
     --bl.logtable(unit)
@@ -50,7 +47,6 @@ Hooks:OverrideFunction(CriminalsManager, "character_name_by_unit", function(self
         
     if success then
         logger:log("Successfully found the unit\'s _blname \"" .. returned .. "\"")
-        logger:endScope()
         return returned
     end
 
@@ -58,7 +54,6 @@ Hooks:OverrideFunction(CriminalsManager, "character_name_by_unit", function(self
     for k, data in next, self._characters do
         if data.unit and data.taken and search_key == data.unit:key() then
             logger:log("No _blname found belonging to unit, returning unused name \"" .. data.name .. "\"")
-            logger:endScope()
             return data.name
         end
 
@@ -92,13 +87,13 @@ end]]
     end
 end)]]
 
-Hooks:OverrideFunction(CriminalsManager, "getchar", function(self, crimname)
+SprixHookMgr.OverrideHook(CriminalsManager, "getchar", function(self, crimname)
     for k, char in next, self._characters do
         if char.name == crimname then return char end
     end
 end)
 
-Hooks:OverrideFunction(CriminalsManager, "chartaken", function(self, char)
+SprixHookMgr.OverrideHook(CriminalsManager, "chartaken", function(self, char)
     local taken = char.taken or managers.groupai:state():is_teamAI_marked_for_removal(char.name)
     if not taken then
         for k, member in next, managers.network:game():all_members() do
@@ -128,7 +123,7 @@ CriminalsManager.upgrade_crimname_to_contingent = function( self, crimname )
 
 end
 
-Hooks:OverrideFunction(CriminalsManager, "get_free_character_name", function(self, refusecontingent)
+SprixHookMgr.OverrideHook(CriminalsManager, "get_free_character_name", function(self, refusecontingent)
     
     -- Used to avoid spawning contingents in functions like "fill_criminal_team_with_AI"
     refusecontingent = refusecontingent or false

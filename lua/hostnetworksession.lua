@@ -1,4 +1,4 @@
-Hooks:OverrideFunction(HostNetworkSession, "chk_server_joinable_state", function(self)
+SprixHookMgr.OverrideFunction(HostNetworkSession, "chk_server_joinable_state", function(self)
     --#region Unaltered Code
     for peer_id, peer in next, self._peers do
         if peer:force_open_lobby_state() then
@@ -49,7 +49,7 @@ Hooks:OverrideFunction(HostNetworkSession, "chk_server_joinable_state", function
     --#endregion Unaltered Code
 end)
 
-Hooks:OverrideFunction(HostNetworkSession, "_get_free_client_id", function(self)
+SprixHookMgr.OverrideFunction(HostNetworkSession, "_get_free_client_id", function(self)
     local i = 2
     while i < bl.bl_total_playable_crims+1 do
 

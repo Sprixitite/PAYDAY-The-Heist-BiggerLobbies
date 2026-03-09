@@ -47,7 +47,7 @@ for i=0, bl:bl_additional_crims()-1 do
 	
 end
 
-Hooks:OverrideFunction(MenuLobbyRenderer, "set_character", function(self, id, character)
+SprixHookMgr.OverrideFunction(MenuLobbyRenderer, "set_character", function(self, id, character)
 	local slot = self._player_slots[id]
 	slot.character:set_text(string.upper(managers.localization:text("debug_" .. character)))
 	slot.character:set_color(Color.white)
@@ -70,7 +70,7 @@ Hooks:OverrideFunction(MenuLobbyRenderer, "set_character", function(self, id, ch
 
 end)
 
-Hooks:OverrideFunction(MenuLobbyRenderer, "open", function(self, ...)
+SprixHookMgr.OverrideFunction(MenuLobbyRenderer, "open", function(self, ...)
 	---@diagnostic disable-next-line
 	MenuLobbyRenderer.super.open(self, ...)
 	local safe_rect_pixels = managers.viewport:get_safe_rect_pixels()
@@ -422,7 +422,7 @@ Hooks:OverrideFunction(MenuLobbyRenderer, "open", function(self, ...)
 	self:_layout_menu_bg()
 end)
 
-Hooks:OverrideFunction(MenuLobbyRenderer, "_layout_video", function(self)
+SprixHookMgr.OverrideFunction(MenuLobbyRenderer, "_layout_video", function(self)
     local size_scale = math.ceil(bl.bl_total_playable_crims / 4) > 9 and 0 or 1
 	if self._level_video then
 		local w = self._gui_info_panel:w() * 0.775 * size_scale
@@ -433,7 +433,7 @@ Hooks:OverrideFunction(MenuLobbyRenderer, "_layout_video", function(self)
 	end
 end)
 
-Hooks:OverrideFunction(MenuLobbyRenderer, "_layout_info_panel", function(self)
+SprixHookMgr.OverrideFunction(MenuLobbyRenderer, "_layout_info_panel", function(self)
 	local res = RenderSettings.resolution
 	local safe_rect = managers.viewport:get_safe_rect_pixels()
 	local is_single_player = Global.game_settings.single_player

@@ -1,16 +1,12 @@
-Hooks:OverrideFunction(NetworkMember, "spawn_unit", function(self, spawn_point_id, is_drop_in, spawn_as)
+SprixHookMgr.OverrideHook(NetworkMember, "spawn_unit", function(self, spawn_point_id, is_drop_in, spawn_as)
 
     local logger = bl:getLogger()
 
-    logger:beginScope("spawn_unit")
-
     if self._unit then
-        logger:endScope()
         return
     end
 
     if not self._peer:synched() then
-        logger:endScope()
         return
     end
 
@@ -76,7 +72,6 @@ Hooks:OverrideFunction(NetworkMember, "spawn_unit", function(self, spawn_point_i
 
             if not character_name then
                 cat_error("multiplayer_base", "[NetworkMember:spawn_unit] failed to find available character name for peer", peer_id)
-                logger:endScope()
                 return
             end
 
@@ -108,14 +103,12 @@ Hooks:OverrideFunction(NetworkMember, "spawn_unit", function(self, spawn_point_i
         self._peer:send_queued_sync("spawn_dropin_penalty", (need_res or need_revive) and member_dead, (need_res or need_revive) and member_downed, health, used_deployable)
     end
 
-    logger:endScope()
     return unit
 end)
 
-Hooks:OverrideFunction(NetworkMember, "set_unit", function(self, unit, character_name)
+SprixHookMgr.OverrideHook(NetworkMember, "set_unit", function(self, unit, character_name)
 
     local logger = bl:getLogger()
-    logger:beginScope("set_unit")
 
     local is_new_unit = unit and (not self._unit or self._unit:key() ~= unit:key())
 
@@ -147,7 +140,5 @@ Hooks:OverrideFunction(NetworkMember, "set_unit", function(self, unit, character
         end
 
     end
-
-    logger:endScope()
 
 end)

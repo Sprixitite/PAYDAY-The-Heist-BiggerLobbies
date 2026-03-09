@@ -22,7 +22,7 @@ local function define_the_things(self)
 	HuskPlayerMovement._char_name_to_index = self._char_name_to_index
 end
 
-Hooks:OverrideFunction(HuskPlayerMovement, "set_character_anim_variables", function(self)
+SprixHookMgr.OverrideFunction(HuskPlayerMovement, "set_character_anim_variables", function(self)
 	local char_name = _G.bl:get_blname(self._unit) or managers.criminals:character_name_by_unit(self._unit)
 	if not char_name then
 		return

@@ -1,6 +1,6 @@
 -- Modified to alter the display of player count in lobbies
 
-Hooks:PostHook(NetworkManager, "on_peer_added", "on_peer_added_bl", function(self, peer, peer_id)
+SprixHookMgr.PostHook(NetworkManager, "on_peer_added", "on_peer_added_bl", function(self, peer, peer_id)
     if Network:is_server() then
         -- Change the crime.net display to show the % of players relative to the lobby size set by host.
         local ratio = managers.network:session():amount_of_players() / bl.bl_total_playable_crims

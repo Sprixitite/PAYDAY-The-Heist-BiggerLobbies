@@ -1,4 +1,4 @@
-Hooks:OverrideFunction(MenuNodeGui, "_setup_main_panel", function(self, safe_rect, shape)
+SprixHookMgr.OverrideFunction(MenuNodeGui, "_setup_main_panel", function(self, safe_rect, shape)
 	local res = RenderSettings.resolution
 	shape = shape or {}
 	local x = shape.x or safe_rect.x

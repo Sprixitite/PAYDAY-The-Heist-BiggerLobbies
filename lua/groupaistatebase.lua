@@ -1,4 +1,4 @@
-Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_team_AI_enabled_state_changed", function(self)
+SprixHookMgr.OverrideHook(GroupAIStateBase, "on_criminal_team_AI_enabled_state_changed", function(self)
 	if Network:is_client() then
 		return
 	end
@@ -14,7 +14,7 @@ Hooks:OverrideFunction(GroupAIStateBase, "on_criminal_team_AI_enabled_state_chan
 
 end)
 
-Hooks:OverrideFunction(GroupAIStateBase, "fill_criminal_team_with_AI", function(self, is_drop_in)
+SprixHookMgr.OverrideHook(GroupAIStateBase, "fill_criminal_team_with_AI", function(self, is_drop_in)
 
 	while true do
 	
@@ -40,13 +40,10 @@ end)
 -- 	return amount
 -- end
 
-Hooks:OverrideFunction(GroupAIStateBase, "spawn_one_teamAI", function(self, is_drop_in, char_name, spawn_on_unit)
+SprixHookMgr.OverrideHook(GroupAIStateBase, "spawn_one_teamAI", function(self, is_drop_in, char_name, spawn_on_unit)
     local logger = bl:getLogger()
 
-    logger:beginScope("spawn_one_teamAI")
-
 	if Global.criminal_team_AI_disabled or not self._ai_enabled then
-        logger:endScope()
 		return
 	end
 
@@ -110,8 +107,6 @@ Hooks:OverrideFunction(GroupAIStateBase, "spawn_one_teamAI", function(self, is_d
 			params = {scan = true},
 			objective = objective
 		})
-
-        logger:endScope()
 
 		return unit
 	end

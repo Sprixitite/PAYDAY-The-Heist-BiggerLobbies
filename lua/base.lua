@@ -12,6 +12,7 @@ local bl_run_require = function(filePathRelativeToModRoot)
 end
 
 bl_run_require("lua/util/sprixlogger.lua")
+bl_run_require("lua/util/sprixhookmgr.lua")
 
 _G.bl = {
     bl_run_require = bl_run_require,
@@ -20,12 +21,7 @@ _G.bl = {
     bl_heisters = function(self) return {"american", "german", "russian", "spanish"} end,
     bl_additional_crims = function(self) return ( 4 * self.bl_total_playable_crims ) - 4 end,
     bl_additional_full_crims = function(self) return self.bl_total_playable_crims - 4 end,
-    getLogger = function(self)
-        if self.logger == nil then
-            self.logger = sprixLogger.new(log)
-        end
-        return self.logger
-    end,
+    getLogger = function(self) return SprixHookMgr.Logger end,
     bl_name_dict = {},
     set_blname = function(self, unit, name)
         if unit == nil then return end

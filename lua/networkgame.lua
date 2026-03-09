@@ -1,4 +1,4 @@
-Hooks:OverrideFunction(NetworkGame, "on_peer_request_character", function(self, peer_id, character)
+SprixHookMgr.OverrideFunction(NetworkGame, "on_peer_request_character", function(self, peer_id, character)
 
 	local finalname = character
 

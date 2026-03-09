@@ -1,4 +1,4 @@
-Hooks:OverrideFunction(HostStateInLobby, "on_join_request_received", function(self, data, peer_name, client_mask_set, dlcs, client_ip, client_user_id, sender)
+SprixHookMgr.OverrideFunction(HostStateInLobby, "on_join_request_received", function(self, data, peer_name, client_mask_set, dlcs, client_ip, client_user_id, sender)
     --#region Enterprise Quality Code
         print("[HostStateInLobby:on_join_request_received]", peer_name, client_mask_set, dlcs, client_ip, client_user_id, sender:ip_at_index(0))
         if self:_has_peer_left_PSN(peer_name) then

@@ -64,7 +64,7 @@
 			<network/>
 			<rpc/>
 			<message name="peer_handshake" delivery="ordered" receiver="connection" check="server_to_client"/>
-			<param type="int" min="0" max="4" />
+			<param type="int" min="1" max="4" />
 		</search>
 
 		<target mode="replace">
@@ -271,7 +271,7 @@
 		<search>
 			<network/>
 			<rpc/>
-			<message ame="send_statistics" delivery="ordered" receiver="unit" check="client_to_server"/>
+			<message name="send_statistics" delivery="ordered" receiver="unit" check="client_to_server"/>
 			<param type="int" min="1" max="4" />
 		</search>
 

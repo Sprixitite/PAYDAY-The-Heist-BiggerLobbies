@@ -1,4 +1,4 @@
-SprixHookMgr.OverrideHook(NetworkMember, "spawn_unit", function(self, spawn_point_id, is_drop_in, spawn_as)
+SprixHookMgr.OverrideFunction(NetworkMember, "spawn_unit", function(self, spawn_point_id, is_drop_in, spawn_as)
 
     local logger = bl:getLogger()
 
@@ -106,7 +106,7 @@ SprixHookMgr.OverrideHook(NetworkMember, "spawn_unit", function(self, spawn_poin
     return unit
 end)
 
-SprixHookMgr.OverrideHook(NetworkMember, "set_unit", function(self, unit, character_name)
+SprixHookMgr.OverrideFunction(NetworkMember, "set_unit", function(self, unit, character_name)
 
     local logger = bl:getLogger()
 

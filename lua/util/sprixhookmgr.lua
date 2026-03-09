@@ -2,7 +2,7 @@ local DEBUG_MODE = true
 
 ---@class Sprix_HookManager
 ---@field Logger Sprix_LogObj
-local hookMgr = _G.SprixHookMgr or {}
+local hookMgr = {}
 
 if not _G.SprixLogger then
     dofile("mods/PDTHBigLobbies/lua/util/sprixlogger.lua")
@@ -19,7 +19,7 @@ function hookMgr.PreHook(class, fnName, hookName, clbck)
     Hooks:PreHook(class, fnName, hookName, clbck)
 end
 
-function hookMgr.OverrideHook(class, fnName, replacement)
+function hookMgr.OverrideFunction(class, fnName, replacement)
     replacement = hookMgr.Logger:wrap(fnName, DEBUG_MODE, replacement)
     Hooks:OverrideFunction(class, fnName, replacement)
 end

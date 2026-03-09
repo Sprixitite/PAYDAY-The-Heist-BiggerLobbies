@@ -24,7 +24,7 @@ SprixHookMgr.PostHook(CriminalsManager, "init", "init_bl", function(self)
     end
 end)
 
-SprixHookMgr.OverrideHook(CriminalsManager, "character_data_by_name", function(self, name)
+SprixHookMgr.OverrideFunction(CriminalsManager, "character_data_by_name", function(self, name)
     for k, data in next, self._characters do
         if name == data.name then
             return data.data
@@ -32,7 +32,7 @@ SprixHookMgr.OverrideHook(CriminalsManager, "character_data_by_name", function(s
     end
 end)
 
-SprixHookMgr.OverrideHook(CriminalsManager, "character_name_by_unit", function(self, unit)
+SprixHookMgr.OverrideFunction(CriminalsManager, "character_name_by_unit", function(self, unit)
 
     local logger = bl:getLogger()
 
@@ -87,13 +87,13 @@ end]]
     end
 end)]]
 
-SprixHookMgr.OverrideHook(CriminalsManager, "getchar", function(self, crimname)
+SprixHookMgr.OverrideFunction(CriminalsManager, "getchar", function(self, crimname)
     for k, char in next, self._characters do
         if char.name == crimname then return char end
     end
 end)
 
-SprixHookMgr.OverrideHook(CriminalsManager, "chartaken", function(self, char)
+SprixHookMgr.OverrideFunction(CriminalsManager, "chartaken", function(self, char)
     local taken = char.taken or managers.groupai:state():is_teamAI_marked_for_removal(char.name)
     if not taken then
         for k, member in next, managers.network:game():all_members() do
@@ -123,7 +123,7 @@ CriminalsManager.upgrade_crimname_to_contingent = function( self, crimname )
 
 end
 
-SprixHookMgr.OverrideHook(CriminalsManager, "get_free_character_name", function(self, refusecontingent)
+SprixHookMgr.OverrideFunction(CriminalsManager, "get_free_character_name", function(self, refusecontingent)
     
     -- Used to avoid spawning contingents in functions like "fill_criminal_team_with_AI"
     refusecontingent = refusecontingent or false

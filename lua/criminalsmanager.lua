@@ -1,3 +1,5 @@
+SprixHookMgr.DebugClass(CriminalsManager)
+
 SprixHookMgr.PostHook(CriminalsManager, "init", "init_bl", function(self)
     local ref_tbl = {}
     for k, v in pairs(self._characters) do

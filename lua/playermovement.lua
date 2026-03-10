@@ -1,3 +1,5 @@
+SprixHookMgr.DebugClass(PlayerMovement)
+
 SprixHookMgr.OverrideFunction(PlayerMovement, "set_character_anim_variables", function(self)
 
     local logger = bl:getLogger()

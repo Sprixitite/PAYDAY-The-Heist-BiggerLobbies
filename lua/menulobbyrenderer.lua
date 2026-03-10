@@ -1,3 +1,5 @@
+SprixHookMgr.DebugClass(MenuLobbyRenderer)
+
 local mugshots = {
 	random = "mugshot_random",
 	undecided = "mugshot_unassigned",

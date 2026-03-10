@@ -1,7 +1,16 @@
 ---@meta
 ---@module "meta.diesel"
 
----@class PD_MissionElement_End : Diesel_Class
+---@class PD_CoreMissionScriptElement : Diesel_Class
+---@field on_executed fun(self: PD_MissionScriptElement, ...: any)
+---@field MissionScriptElement PD_MissionScriptElement
+_G.CoreMissionScriptElement = _G.CoreMissionScriptElement
+
+---@class PD_MissionScriptElement : Diesel_Class<PD_CoreMissionScriptElement>, Diesel_Class
+---@field on_executed fun(self: PD_MissionScriptElement, ...: any)
+_G.MissionScriptElement = _G.MissionScriptElement
+
+---@class PD_MissionElement_End : Diesel_Class<PD_MissionScriptElement>, Diesel_Class
 ---@field _values table
 _G.ElementMissionEnd = _G.ElementMissionEnd
 
@@ -96,7 +105,6 @@ _G.NetworkMember = _G.NetworkMember
 ---@field set_num_players     fun(self: PD_Matchmaker, to: number)
 
 ---@class PD_NetworkMatchMakingSTEAM : Diesel_Class
-
 _G.NetworkMatchMakingSTEAM = _G.NetworkMatchMakingSTEAM
 
 ---@class PD_PlatformManager : Diesel_Class
@@ -127,18 +135,16 @@ _G.HUDManager = _G.HUDManager
 _G.PlayerBase = _G.PlayerBase
 
 ---@class PD_GroupAIManager : Diesel_Class
----@field state fun(self: PD_GroupAIManager) : PD_GroupAIManagerState
+---@field state fun(self: PD_GroupAIManager) : PD_GroupAIStateBase
 _G.GroupAIManager = _G.GroupAIManager
 
----@class PD_GroupAIManagerState
----@field remove_one_teamAI function
----@field all_char_criminals function
----@field is_teamAI_marked_for_removal fun(self: PD_GroupAIManagerState, char_id: string) : boolean
----@field amount_of_winning_ai_criminals fun(self: PD_GroupAIManagerState) : number
----@field chk_allow_drop_in fun(self: PD_GroupAIManagerState) : boolean
----@field is_AI_enabled fun(self: PD_GroupAIManagerState) : boolean
-
----@class PD_GroupAIStateBase
+---@class PD_GroupAIStateBase : Diesel_Class
+---@field all_char_criminals fun(self: PD_GroupAIStateBase) : table<string, table>
+---@field amount_of_winning_ai_criminals fun(self: PD_GroupAIStateBase) : number
+---@field chk_allow_drop_in fun(self: PD_GroupAIStateBase) : boolean
+---@field is_AI_enabled fun(self: PD_GroupAIStateBase) : boolean
+---@field is_teamAI_marked_for_removal fun(self: PD_GroupAIStateBase, char_id: string) : boolean
+---@field remove_one_teamAI fun(self: PD_GroupAIStateBase, name: string, replace_with_player: boolean)
 _G.GroupAIStateBase = _G.GroupAIStateBase
 
 ---@class PD_NavigationManager : Diesel_Class
@@ -170,8 +176,6 @@ _G.HostStateInLobby = _G.HostStateInLobby
 ---@field system_menu      PD_SystemMenuManager
 ---@field trade            PD_TradeManager
 ---@field editor           table
----@type PD_Managers
----@diagnostic disable-next-line
 _G.managers = {}
 
 ---@type table

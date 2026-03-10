@@ -3,11 +3,31 @@
 ---@class Diesel_Idstring
 ---@field key fun(self: Diesel_Idstring) : string
 
+--- Diesel's core Color class, all values are in the range 0-1
 ---@class Diesel_Color
+---@field a number
+---@field r number
+---@field g number
+---@field b number
+---@field x number
+---@field y number
+---@field z number
+---@field alpha number
+---@field red   number
+---@field green number
+---@field blue  number
 ---@field with_alpha fun(self: Diesel_Color, a: number) : Diesel_Color
 
 ---@class Diesel_Vec3
+---@field x number
+---@field y number
+---@field z number
+
 ---@class Diesel_Rotation
+---@field yaw   fun(self: Diesel_Rotation) : number
+---@field pitch fun(self: Diesel_Rotation) : number
+---@field roll  fun(self: Diesel_Rotation) : number
+
 ---@class Diesel_Video
 
 ---@class Diesel_Rect
@@ -21,8 +41,8 @@
 ---@field set_z fun(vec: Diesel_Vec3, to: number) : Diesel_Vec3
 _G.mvector3 = {}
 
----@class Diesel_Class
----@field super Diesel_Class
+---@class Diesel_Class<SuperT>
+---@field super SuperT
 
 ---@class Diesel_Application
 ---@field editor fun(self: Diesel_Application) : boolean
@@ -82,6 +102,14 @@ table.size = function(tbl) end
 ---@return Diesel_Idstring
 _G.Idstring = function(to_idstring) end
 
+--- Generate a rotation from a `yaw`, `pitch`, and `roll`
+---@param yaw number
+---@param pitch number
+---@param roll number
+---@return Diesel_Rotation
+_G.rotation = function(yaw, pitch, roll) end
+
+--- Generate a rotation by `amt` around the axis `about`
 ---@param amt number
 ---@param about Diesel_Vec3
 ---@return Diesel_Rotation
@@ -95,21 +123,19 @@ _G.Rotation = function(amt, about) end
 ---@return Diesel_Vec3
 _G.Vector3 = function(x, y, z) end
 
+---@overload fun() : Diesel_Color
+---@overload fun(hex: string) : Diesel_Color
+---@overload fun(r: number, g: number, b: number) : Diesel_Color
 ---@overload fun(a: number, r: number, g: number, b: number) : Diesel_Color
+---@type table<string, Diesel_Color>
 _G.Color = {
-    ---@type Diesel_Color
-    white = nil,
-
-    ---@type Diesel_Color
-    black = nil
+    white = Color(),
+    black = Color(),
+    red   = Color(),
+    green = Color(),
+    blue  = Color(),
+    yellow = Color()
 }
-
----@param a number
----@param r number
----@param g number
----@param b number
----@return Diesel_Color
-_G.Color = function(a, r, g, b) end
 
 ---@param ... string
 _G.cat_error = function(...) end

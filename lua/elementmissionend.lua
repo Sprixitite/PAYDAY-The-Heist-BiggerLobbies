@@ -32,6 +32,5 @@ SprixHookMgr.OverrideFunction(ElementMissionEnd, "on_executed", function(self, i
         managers.editor:output_error("Cant change to state " .. self._values.state .. " in mission end element " .. self._editor_name .. ".")
     end
 
-    ---@diagnostic disable-next-line I don't want to figure out making super classes annotate properly
     ElementMissionEnd.super.on_executed(self, instigator)
 end)

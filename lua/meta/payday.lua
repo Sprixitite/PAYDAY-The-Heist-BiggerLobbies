@@ -51,6 +51,9 @@ _G.MenuRenderer = _G.MenuRenderer
 ---@field add_video fun(self: PD_VideoManager, video: Diesel_Video)
 _G.VideoManager = _G.VideoManager
 
+---@class PD_TradeManager : Diesel_Class
+_G.TradeManager = _G.TradeManager
+
 ---@class PD_PlayerManager : Diesel_Class
 ---@field player_unit fun(self: PD_PlayerManager) : Diesel_Unit
 ---@field get_crew_bonus_by_peer fun(self: PD_PlayerManager, peer_id: number) : any
@@ -165,6 +168,7 @@ _G.HostStateInLobby = _G.HostStateInLobby
 ---@field user             PD_UserManager
 ---@field menu             PD_MenuManager
 ---@field system_menu      PD_SystemMenuManager
+---@field trade            PD_TradeManager
 ---@field editor           table
 ---@type PD_Managers
 ---@diagnostic disable-next-line

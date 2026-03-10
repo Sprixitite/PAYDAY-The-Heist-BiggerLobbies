@@ -16,6 +16,7 @@
         { "hook_id" : "lib/managers/mission/elementmissionend",           "script_path" : "lua/elementmissionend.lua"       },
 
         { "hook_id" : "lib/managers/playermanager",                       "script_path" : "lua/playermanager.lua"           },
+        { "hook_id" : "lib/managers/trademanager",                        "script_path" : "lua/trademanager.lua"            },
 
         { "hook_id" : "lib/network/networkgame",                          "script_path" : "lua/networkgame.lua"             },
         { "hook_id" : "lib/network/networkmember",                        "script_path" : "lua/networkmember.lua"           },

@@ -8,7 +8,7 @@
 -- TL;DR: I'll fix it at some point (hopefully) ((maybe)) I pinkie promise
 
 local bl_run_require = function(filePathRelativeToModRoot)
-    dofile("mods/PDTHBigLobbies/" .. filePathRelativeToModRoot)
+    dofile(ModPath .. '/' .. filePathRelativeToModRoot)
 end
 
 bl_run_require("lua/util/sprixlogger.lua")

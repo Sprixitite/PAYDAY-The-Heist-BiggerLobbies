@@ -35,7 +35,7 @@ SprixHookMgr.OverrideFunction(PlayerMovement, "set_character_anim_variables", fu
 	logger:log("mesh_names[char_name] exists: " .. tostring(mesh_names[char_name] ~= nil))
 	logger:log("player_mesh_suffix exists: " .. tostring(managers.player._player_mesh_suffix ~= nil))
 
-    local success, _ = pcall(function()
+    local success, _ = blt.pcall(function()
 	local mesh_name = Idstring("g_fps_hand" .. mesh_names[char_name] .. managers.player._player_mesh_suffix)
 	local mesh_obj = self._unit:camera():camera_unit():get_object(mesh_name)
 	if mesh_obj then

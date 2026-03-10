@@ -57,7 +57,7 @@ end
 bl.logtable = function(table)
     if (type(table) ~= "table") then
         log("Table printout was called on a non-table value, will try to print metatable...")
-        local success, returned = pcall(function()
+        local success, returned = blt.pcall(function()
             table = getmetatable(table)
             if type(table) == "table" then return true end
         end)

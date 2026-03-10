@@ -106,7 +106,7 @@ end
 function sprixLogger:wrap(name, debugging, fn)
     return function(...)
         self:beginScope(name)
-        local results = { pcall(fn, ...) }
+        local results = { blt.pcall(fn, ...) }
         local success = results[1]
         if not success then
             local failReason = results[2]

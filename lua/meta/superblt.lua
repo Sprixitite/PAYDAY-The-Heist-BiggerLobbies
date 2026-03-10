@@ -8,3 +8,9 @@ _G.Hooks = {}
 
 ---@param ... any
 _G.log = function(...) end
+
+_G.pcall = nil
+
+---@class BLT_Global
+---@field pcall fun(fn: function, ...: any) : boolean, ...
+_G.blt = {}

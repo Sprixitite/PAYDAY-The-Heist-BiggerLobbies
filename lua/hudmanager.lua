@@ -38,7 +38,7 @@ SprixHookMgr.OverrideFunction(HUDManager, "add_mugshot_by_unit", function(self, 
     
     --if not worked then dorhud_log("pcall didn't work") end
 
-    local success, proto_mask_name = pcall(function()
+    local success, proto_mask_name = blt.pcall(function()
         return managers.criminals:character_data_by_name(character_name_id).mask_icon
     end)
 

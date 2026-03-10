@@ -1,0 +1,9 @@
+{
+    "diagnostics.severity": {
+        "undefined-field": "Error",
+        "undefined-global": "Error",
+        "param-type-mismatch": "Error"
+    },
+    "runtime.version": "Lua 5.1",
+    "workspace.ignoreSubmodules": false
+}
